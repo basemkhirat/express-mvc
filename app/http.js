@@ -1,13 +1,12 @@
 var express = require("express");
 var path = require("path");
-
 require(path.join(__basepath, "libs/mongoose"));
 
 module.exports = function (app) {
 
     app.use(express.static(path.join(__basepath, "public")));
 
-    app.use(require('../libs/i18n'));
+    app.use(require(path.join(__basepath, "libs/i18n")));
 
     app.use(function (req, res, next) {
         var origRender = res.render;

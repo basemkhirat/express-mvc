@@ -3,9 +3,10 @@ global.app = new require("express")();
 var mongoose = require("mongoose");
 var path = require("path");
 var fs = require("fs");
+var path = require("path");
 var merge = require("./libs/merge");
 var walkSync = require("./libs/walkSync");
-require('./libs/router')(app);
+require(path.join(__basepath, "libs/router"))(app);
 
 global._config = {};
 
