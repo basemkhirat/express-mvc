@@ -7,7 +7,6 @@ module.exports = function (req, res, next) {
     i18n.init(req, res);
 
     global._lang = res.__;
-    // res.locale.__ = res.__;
 
     return next();
 };
