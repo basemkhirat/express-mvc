@@ -6,13 +6,11 @@ var fs = require("fs");
 var path = require("path");
 var merge = require("./libs/merge");
 var walkSync = require("./libs/walkSync");
-require(path.join(__basepath, "libs/router"))(app);
 
 global._config = {};
 
-/**
- * Config files
- */
+/* Configuration */
+
 walkSync("./config").forEach(function (file) {
     _config[file.replace(".js", "")] = require("./config/" + file);
 });
@@ -24,9 +22,8 @@ if (fs.existsSync(env_config_path + ".js")) {
     _config = merge.recursive(true, _config, env_config);
 }
 
-/**
- * Responses
- */
+/* Responses */
+
 app.use(function (req, res, next) {
 
     walkSync("./app/responses").forEach(function (file) {
@@ -37,30 +34,26 @@ app.use(function (req, res, next) {
     next();
 });
 
-/**
- * Services
- */
+/* Services */
+
 walkSync("./app/services").forEach(function (file) {
     global[file.replace(".js", "")] = require("./app/services/" + file);
 });
 
-/**
- * Middlewares
- */
+/* Middlewares */
+
 walkSync("./app/middlewares").forEach(function (file) {
     global[file.replace(".js", "")] = require("./app/middlewares/" + file);
 });
 
-/**
- * Models
- */
+/* Models */
+
 walkSync("./app/models").forEach(function (file) {
     global[file.replace(".js", "")] = require("./app/models/" + file)(mongoose);
 });
 
-/**
- * controllers
- */
+/* controllers */
+
 walkSync("./app/controllers").forEach(function (file) {
     global[file.replace(".js", "")] = require("./app/controllers/" + file);
 });

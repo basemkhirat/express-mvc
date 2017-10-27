@@ -11,7 +11,8 @@ module.exports = function (mongoose) {
                 unique: true
             },
             password: {
-                type: String
+                type: String,
+                required: true
             },
             first_name: {
                 type: String,
