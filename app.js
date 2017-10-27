@@ -3,13 +3,12 @@ global.app = new require("express")();
 var mongoose = require("mongoose");
 var path = require("path");
 var fs = require("fs");
-var path = require("path");
 var merge = require("./libs/merge");
 var walkSync = require("./libs/walkSync");
 
 global._config = {};
 
-/* Configuration */
+/* Configurations */
 
 walkSync("./config").forEach(function (file) {
     _config[file.replace(".js", "")] = require("./config/" + file);
