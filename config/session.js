@@ -83,28 +83,30 @@ module.exports = {
         secure: false,
 
         /**
+         * Specifies the number (in milliseconds) to use when calculating the Expires Set-Cookie attribute.
+         * This is done by taking the current server time and adding maxAge milliseconds
+         * to the value to calculate an Expires datetime. By default, no maximum age is set.
+         * Note If both expires and maxAge are set in the options, then the last one defined in the object is what is used.
+         * By default cookie.maxAge is null, meaning no "expires" parameter is set so the cookie becomes
+         * a browser-session cookie. When the user closes the browser the cookie (and session) will be removed.
+         */
+
+        maxAge: null,
+
+        /**
          * Specifies the Date object to be the value for the Expires Set-Cookie attribute.
          * By default, no expiration is set, and most clients will consider this a "non-persistent cookie"
          * and will delete it on a condition like exiting a web browser application.
          */
 
-        //expires:
+        // expires: Dat
 
-        /**
-         * Specifies the number (in milliseconds) to use when calculating the Expires Set-Cookie attribute.
-         * This is done by taking the current server time and adding maxAge milliseconds
-         * to the value to calculate an Expires datetime. By default, no maximum age is set.
-         * Note If both expires and maxAge are set in the options, then the last one defined in the object is what is used.
-         */
-
-        maxAge: null,
 
         /**
          * Specifies the value for the Domain Set-Cookie attribute.
          * By default, no domain is set, and most clients will consider the cookie to apply to only the current domain.
          */
 
-        //domain: "example.com"
-
+        // domain: "example.com"
     }
 };

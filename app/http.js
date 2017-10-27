@@ -34,6 +34,8 @@ module.exports = function (app) {
 
     app.use(require("express-session")(_config.session));
 
+    app.use(require('csurf')(_config.csrf));
+
     app.use(require("express-flash")());
 
     require("./routes")(app);
@@ -42,7 +44,7 @@ module.exports = function (app) {
         return res.notFound();
     });
 
-    app.use(function (error, req, res, ne) {
-        return res.serverError(error.message);
+    app.use(function (error, req, res, next) {
+       return res.serverError(error.message);
     });
 };

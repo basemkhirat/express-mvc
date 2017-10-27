@@ -1,7 +1,7 @@
 module.exports = {
 
     /**
-     * Homepage
+     * Show homepage
      * @param req
      * @param res
      * @param next
@@ -11,7 +11,7 @@ module.exports = {
     },
 
     /**
-     * Users
+     * Users json response
      * @param req
      * @param res
      * @param next
@@ -26,5 +26,4 @@ module.exports = {
         });
 
     }
-
 };
