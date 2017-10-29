@@ -1,20 +1,15 @@
-var passport = require("passport");
+app.get(
+    "/",
+    HomeController.index
+);
 
-module.exports = function (app) {
+app.get(
+    "/logout",
+    AuthController.logout
+);
 
-    app.get(
-        "/",
-        HomeController.index
-    );
-
-    app.get(
-        "/logout",
-        AuthController.logout
-    );
-
-    app.get(
-        "/profile",
-        SessionAuth,
-        HomeController.profile
-    );
-};
+app.get(
+    "/profile",
+    SessionAuth,
+    HomeController.profile
+);

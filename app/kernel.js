@@ -77,11 +77,11 @@ require("./passport");
 
 /* Serving api routes */
 
-require("./routes/api")(app);
+require("./routes/api");
 
 /* Serving web routes */
 
-require("./routes/web")(app);
+require("./routes/web");
 
 /* 404 error handler */
 
