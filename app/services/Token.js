@@ -9,7 +9,7 @@ const jwt = require('jsonwebtoken');
 
 module.exports = {
 
-    currentUser: null,
+    user: false,
 
     /**
      * generate a new token
@@ -50,30 +50,16 @@ module.exports = {
         return jwt.decode(token);
     },
 
-    /**
-     * set current user
-     * @param user
-     */
-    setUser: function (user) {
-        this.currentUser = user;
+    login: function (payload, callback) {
+
     },
 
-    /**
-     * get logged user
-     * @param field
-     * @returns {null}
-     */
-    user: function (field) {
-        return field != null ? this.currentUser[field] : this.currentUser;
+    user: function () {
+        return this.user;
     },
 
-    /**
-     * check if there is logged user
-     * @returns {boolean}
-     */
     check: function () {
-        return !!this.currentUser;
+        return !!this.user;
     }
-
 };
 

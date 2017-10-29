@@ -3,6 +3,8 @@
  * @description :: Server-side logic for managing users
  */
 
+var jwt = require("jsonwebtoken");
+
 module.exports = {
 
     /**
@@ -12,9 +14,9 @@ module.exports = {
      */
     findOne: function (req, res) {
 
-        const id = req.param("id");
+        var id = req.param("id");
 
-        User.findOne({id: id}, function (error, user) {
+        User.findById(id, function (error, user) {
             if (error) return res.serverError(error);
             if (!user) return res.notFound("User not found");
 
@@ -32,6 +34,7 @@ module.exports = {
 
         User.find(function (error, users) {
             if (error) return res.serverError(error);
+
             return res.ok(users);
         });
 
@@ -41,97 +44,96 @@ module.exports = {
      * Create a new user
      * @param req
      * @param res
+     * @returns {*}
      */
     create: function (req, res) {
 
-        const user = {
-            username: req.param("username"),
-            email: req.param("email"),
-            password: req.param("password"),
-            first_name: req.param("first_name"),
-            last_name: req.param("last_name")
-        };
+        var user = new User({
+            username: req.query.username,
+            email: req.query.email,
+            password: req.query.password,
+            first_name: req.query.first_name,
+            last_name: req.query.last_name
+        });
 
-        User.create(user, function (error, user) {
+        user.save(function (error, user) {
 
             if (error) return res.serverError(error);
 
             return res.ok({
                 user: user,
-                token: Token.generate({id: user.id}),
-                expires: new Date().getTime() + 3 * 60 * 60
+                token: jwt.sign(
+                    user.toJSON(),
+                    _config.jwt.secret,
+                    {expiresIn: _config.jwt.expires}
+                ),
+                expires: _config.jwt.expires
             });
-
         });
     },
 
     /**
-     * Update a given user
+     * Update user by id
      * @param req
      * @param res
      */
     update: function (req, res) {
 
-        const id = req.param("id");
+        var id = req.params.id;
 
-        User.findOne({id: id}, function (error, user) {
+        User.findById(id, function (error, user) {
 
             if (error) return res.serverError(error);
             if (!user) return res.notFound("User not found");
 
-            const data = {};
-
-            if (req.param("username")) {
-                data.username = req.param("username");
+            if (req.query.username) {
+                user.username = req.query.username;
             }
 
-            if (req.param("email")) {
-                data.email = req.param("email");
+            if (req.query.email) {
+                user.email = req.query.email;
             }
 
-            if (req.param("first_name")) {
-                data.first_name = req.param("first_name");
+            if (req.query.first_name) {
+                user.first_name = req.query.first_name
             }
 
-            if (req.param("last_name")) {
-                data.last_name = req.param("last_name");
+            if (req.query.last_name) {
+                user.last_name = req.query.last_name;
             }
 
-            if (req.param("password")) {
-                data.password = req.param("password");
+            if (req.query.password) {
+                user.password = req.query.password;
             }
 
-            User.update({id: id}, data, function (error, user) {
+            user.save(function (error, user) {
                 if (error) return res.serverError(error);
+
                 return res.ok(user);
             });
-
         });
-
     },
 
     /**
-     * Delete a given user
+     * Delete user by id
      * @param req
      * @param res
      */
     destroy: function (req, res) {
 
-        const id = req.param("id");
+        var id = req.params.id;
 
-        User.findOne({id: id}, function (error, user) {
+        User.findById(id, function (error, user) {
 
             if (error) return res.serverError(error);
             if (!user) return res.notFound("User not found");
 
-            User.destroy({id: id}, function (error, user) {
+            user.remove(function (error, user) {
                 if (error) return res.serverError(error);
+
                 return res.ok(user);
             });
-
         });
-
     }
-
 };
 

@@ -10,6 +10,7 @@
   "author": "basem khirat",
   "license": "ISC",
   "dependencies": {
+    "async": "^2.5.0",
     "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.3",
@@ -17,11 +18,16 @@
     "csurf": "^1.9.0",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
+    "express-back": "0.0.2",
     "express-flash": "0.0.2",
     "express-session": "^1.15.6",
     "express-validator": "^4.2.1",
     "i18n": "^0.8.3",
     "jsonwebtoken": "^8.1.0",
-    "mongoose": "^4.12.4"
+    "mongoose": "^4.12.4",
+    "morgan": "^1.9.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^3.0.1",
+    "passport-local": "^1.0.0"
   }
 }

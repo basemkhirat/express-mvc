@@ -1,66 +1,33 @@
-global.app = new require("express")();
-
-var mongoose = require("mongoose");
-var path = require("path");
-var fs = require("fs");
-var merge = require("./libs/merge");
-var walkSync = require("./libs/walkSync");
-
-global._config = {};
+require("./libs/helpers");
 
 /* Configurations */
 
-walkSync("./config").forEach(function (file) {
-    _config[file.replace(".js", "")] = require("./config/" + file);
-});
-
-var env_config_path = path.join(__basepath, "config/env/" + _config.app.env);
-
-if (fs.existsSync(env_config_path + ".js")) {
-    var env_config = require(env_config_path);
-    _config = merge.recursive(true, _config, env_config);
-}
+app.loadConfig();
 
 /* Responses */
 
-app.use(function (req, res, next) {
-
-    walkSync("./app/responses").forEach(function (file) {
-        this.req = req, this.res = res;
-        res[file.replace(".js", "")] = require("./app/responses/" + file).bind(this);
-    });
-
-    next();
-});
+app.loadResponses();
 
 /* Services */
 
-walkSync("./app/services").forEach(function (file) {
-    global[file.replace(".js", "")] = require("./app/services/" + file);
-});
+app.loadServices();
 
 /* Middlewares */
 
-walkSync("./app/middlewares").forEach(function (file) {
-    global[file.replace(".js", "")] = require("./app/middlewares/" + file);
-});
+app.loadMiddlewares();
 
 /* Models */
 
-walkSync("./app/models").forEach(function (file) {
-    global[file.replace(".js", "")] = require("./app/models/" + file)(mongoose);
-});
+app.loadModels();
 
-/* controllers */
+/* Controllers */
 
-walkSync("./app/controllers").forEach(function (file) {
-    global[file.replace(".js", "")] = require("./app/controllers/" + file);
-});
-
+app.loadControllers();
 
 app.set("env", _config.app.env);
 app.set("views", _config.app.views);
 app.set("view engine", _config.app.view_engine);
 app.set("x-powered-by", _config.app.x_powered_by);
+app.set('trust proxy', 1)
 
 module.exports = app;

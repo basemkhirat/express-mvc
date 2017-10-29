@@ -11,9 +11,9 @@ module.exports = {
     secret: "5876a8abf6b0d72e87185dc0521afce7b382730e",
 
     /**
-     * expressed in seconds or a string describing a time span zeit/ms.
-     * Eg: 60, "2 days", "10h", "7d"
+     * expressed in seconds.
+     * Eg: 600
      */
 
-    expires: "60m"
+    expires: 99999999
 }

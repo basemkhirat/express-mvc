@@ -15,7 +15,7 @@ module.exports = function (dir) {
 
     files.forEach(function (file) {
         if (fs.statSync(path.join(dir, file)).isFile()) {
-            filelist.push(path.join(file));
+            filelist.push(file.replace(".js", ""));
         }
     });
 

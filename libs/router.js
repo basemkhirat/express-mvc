@@ -5,7 +5,7 @@ global._url = function (path) {
     return path ? base_url + "/" + path : base_url;
 };
 
-module.exports = function(app, options) {
+module.exports = function(options) {
     if (!options) options = {};
     if (!options.helperName) options.helperName = '_route';
     augmentVerbs(app);
@@ -13,7 +13,7 @@ module.exports = function(app, options) {
     addMiddleware(app, options);
 };
 
-function augmentVerbs(app) {
+function augmentVerbs() {
     methods.forEach(function(method) {
         var _fn = app[method];
         app[method] = function(name, path) {
@@ -38,7 +38,7 @@ function augmentVerbs(app) {
     });
 }
 
-function addHelper(app, options) {
+function addHelper(options) {
     global[options.helperName] = function(name, params) {
         var route = app._namedRoutes[name];
         if (!route) throw new Error('Route not found: ' + name);
@@ -48,7 +48,7 @@ function addHelper(app, options) {
     };
 }
 
-function addMiddleware(app, options) {
+function addMiddleware(options) {
     app.use(function(req, res, next) {
         res.redirectToRoute = function(status, routeName, params) {
             if (isNaN(status)) {
