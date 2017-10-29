@@ -21,7 +21,7 @@
     "express-back": "0.0.2",
     "express-flash": "0.0.2",
     "express-session": "^1.15.6",
-    "express-validator": "^4.2.1",
+    "express-validator": "^4.3.0",
     "i18n": "^0.8.3",
     "jsonwebtoken": "^8.1.0",
     "mongoose": "^4.12.4",
