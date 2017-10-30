@@ -10,8 +10,8 @@ module.exports = {
      */
     token: function (req, res) {
 
-        var email = req.query.email;
-        var password = req.query.password;
+        var email = req.param("email");
+        var password = req.param("password");
 
         if (!email || !password) return res.badRequest('Email and password required');
 
@@ -46,8 +46,8 @@ module.exports = {
      */
     login: function (req, res) {
 
-        var email = req.body.email;
-        var password = req.body.password;
+        var email = req.param("email");
+        var password = req.param("password");
 
         if (!email || !password) return res.badRequest('Email and password required');
 

@@ -68,6 +68,8 @@ app.use(function (req, res, next) {
         locals.req = req;
         origRender.call(res, view, locals, callback);
     };
+
+    req.isAPI = req.url.startsWith("/"+_config.app.api_prefix);
     next();
 });
 

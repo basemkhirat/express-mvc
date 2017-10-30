@@ -16,7 +16,6 @@ module.exports = {
         // });
 
         return res.render("hello");
-
     },
 
     /**

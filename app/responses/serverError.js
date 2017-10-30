@@ -1,13 +1,24 @@
 module.exports = function (data) {
 
-    this.res.status(500);
+    var error = new Error();
 
-    if(data === undefined || _config.app.env == 'production'){
-        data = "Internal Server Error";
+    error.message = "Internal Server Error";
+    error.status = 500;
+    error.success = false;
+
+    if (_config.app.env != "production") {
+        if (data instanceof Error) {
+            error.message = data.message;
+        } else if (data) {
+            error.message = data
+        }
     }
 
-    return this.res.json({
-        data: data,
-        status: false
-    });
+    this.res.status(error.status);
+
+    if (this.req.isAPI) {
+        return this.res.json(error);
+    }
+
+    return this.res.render("errors/500", error);
 };

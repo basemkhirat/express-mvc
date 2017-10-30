@@ -1,9 +1,22 @@
 module.exports = function (data) {
 
-    this.res.status(403);
+    var error = new Error();
 
-    return this.res.json({
-        data: data ? data : "Forbidden",
-        status: false
-    });
+    error.message = "Forbidden";
+    error.status = 401;
+    error.success = false;
+
+    if (data instanceof Error) {
+        error.message = data.message;
+    } else if (data) {
+        error.message = data
+    }
+
+    this.res.status(error.status);
+
+    if (this.req.isAPI) {
+        return this.res.json(error);
+    }
+
+    return this.res.render("errors/401", error);
 };
