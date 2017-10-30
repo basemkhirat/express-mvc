@@ -36,7 +36,7 @@ module.exports = {
 }
 ```
 
-We can access configuration using the `_config` object. so if we want to get the environment key we call `_config.app.env`.
+We can access configuration using the `_config` object. so if we want to get the environment key we call `_config('app.env')`.
 
 ## Public directory
 
@@ -227,7 +227,7 @@ _url("css/style.css");
 
 ## Authentication
 
-This application introduces two type of authentication;
+This application comes with two type of authentication methods:
 
 `session` for working with server side rendering applications which authentication is stored in session and browser cookie.
 
