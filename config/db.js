@@ -4,7 +4,7 @@ module.exports = {
      * The database connection string
      */
 
-    url: 'mongodb://localhost/sails',
+    url: 'mongodb://localhost/db_name',
 
     options: {
 

@@ -37,7 +37,6 @@ module.exports = {
 
     views: require('path').join(__basepath, 'app/views'),
 
-
     /**
      * The api url prefix
      */

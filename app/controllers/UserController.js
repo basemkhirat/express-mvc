@@ -35,8 +35,6 @@ module.exports = {
         User.find(function (error, users) {
             if (error) return res.serverError(error);
 
-            return res.ok("dasf saf");
-
             return res.ok(users);
         });
 
