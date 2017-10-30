@@ -1,15 +1,19 @@
-app.get(
+var router = require("express").Router();
+
+router.get(
     "/",
     HomeController.index
 );
 
-app.get(
+router.get(
     "/logout",
     AuthController.logout
 );
 
-app.get(
+router.get(
     "/profile",
     SessionAuth,
     HomeController.profile
 );
+
+module.exports = router;

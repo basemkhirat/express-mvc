@@ -35,6 +35,13 @@ module.exports = {
      * The views directory path
      */
 
-    views: require('path').join(__basepath, 'app/views')
+    views: require('path').join(__basepath, 'app/views'),
+
+
+    /**
+     * The api url prefix
+     */
+
+    api_prefix: "api"
 };
 

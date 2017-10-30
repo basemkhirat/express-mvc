@@ -2,7 +2,6 @@ var path = require("path");
 var fs = require("fs");
 var walkSync = require("./walkSync");
 var merge = require("./merge");
-var mongoose = require("mongoose");
 
 app.loadConfig = function () {
 
@@ -58,7 +57,7 @@ app.loadModels = function () {
     var models = {};
 
     files.forEach(function (file) {
-        models[file] = require(path.join(directory, file))(mongoose);
+        models[file] = require(path.join(directory, file));
     });
 
     if (_config.globals.models) {

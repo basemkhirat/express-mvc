@@ -1,94 +1,93 @@
+var mongoose = require("mongoose");
 var bcrypt = require("bcrypt");
 
-module.exports = function (mongoose) {
-
-    var schema = mongoose.Schema({
-            username: {
-                type: String,
-                unique: true
-            },
-            email: {
-                type: String,
-                required: true,
-                unique: true
-            },
-            password: {
-                type: String,
-                required: true
-            },
-            first_name: {
-                type: String,
-                required: true
-            },
-            score: {
-                type: Number,
-                default: 0
-            },
-            lang: {
-                type: String,
-                default: 'en'
-            },
-            created_at: {
-                type: Date,
-                default: Date.now
-            },
-            updated_at: {
-                type: Date,
-                default: Date.now
-            }
-
-        }, {
-            versionKey: false,
-            timestamps: true
+var schema = mongoose.Schema({
+        username: {
+            type: String,
+            unique: true
+        },
+        email: {
+            type: String,
+            required: true,
+            unique: true
+        },
+        password: {
+            type: String,
+            required: true
+        },
+        first_name: {
+            type: String,
+            required: true
+        },
+        score: {
+            type: Number,
+            default: 0
+        },
+        lang: {
+            type: String,
+            default: 'en'
+        },
+        created_at: {
+            type: Date,
+            default: Date.now
+        },
+        updated_at: {
+            type: Date,
+            default: Date.now
         }
-    );
 
-    schema.pre('save', function (next) {
+    }, {
+        versionKey: false,
+        timestamps: true
+    }
+);
 
-        var user = this;
+schema.pre('save', function (next) {
 
-        // generate a salt
+    var user = this;
 
-        if(user.isModified("password") || user.isNew) {
+    // generate a salt
 
-            bcrypt.genSalt(10, function (error, salt) {
+    if (user.isModified("password") || user.isNew) {
+
+        bcrypt.genSalt(10, function (error, salt) {
+
+            if (error) return next(error);
+
+            // hash the password along with our new salt
+
+            bcrypt.hash(user.password, salt, function (error, hash) {
 
                 if (error) return next(error);
 
-                // hash the password along with our new salt
+                // override the cleartext password with the hashed one
 
-                bcrypt.hash(user.password, salt, function (error, hash) {
+                user.password = hash;
 
-                    if (error) return next(error);
-
-                    // override the cleartext password with the hashed one
-
-                    user.password = hash;
-
-                    next(null, user);
-                });
+                next(null, user);
             });
+        });
 
-        }else{
-            next(null, user);
+    } else {
+        next(null, user);
+    }
+});
+
+/**
+ * Compare raw and encrypted password
+ * @param password
+ * @param callback
+ */
+schema.methods.comparePassword = function (password, callback) {
+    bcrypt.compare(password, this.password, function (error, match) {
+        if (error) callback(error);
+        if (match) {
+            callback(null, true);
+        } else {
+            callback(error, false);
         }
     });
+}
 
-    /**
-     * Compare raw and encrypted password
-     * @param password
-     * @param callback
-     */
-    schema.methods.comparePassword = function (password, callback) {
-        bcrypt.compare(password, this.password, function (error, match) {
-            if (error) callback(error);
-            if (match) {
-                callback(null, true);
-            } else {
-                callback(error, false);
-            }
-        });
-    }
+module.exports = mongoose.model("user", schema, "user");
 
-    return mongoose.model("user", schema, "user");
-};
