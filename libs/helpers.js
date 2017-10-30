@@ -5,21 +5,21 @@ var merge = require("./merge");
 
 app.loadConfig = function () {
 
-    global._config = {};
+    global.__configs = {};
 
     var directory = path.join(__basepath, "config");
 
     var config = walkSync(directory);
 
     config.forEach(function (file) {
-        _config[file] = require(path.join(directory, file));
+        __configs[file] = require(path.join(directory, file));
     });
 
-    var env_config_path = path.join(__basepath, "config/env/" + _config.app.env);
+    var env_config_path = path.join(__basepath, "config/env/" + __configs.app.env);
 
     if (fs.existsSync(env_config_path + ".js")) {
         var env_config = require(env_config_path);
-        _config = merge.recursive(true, _config, env_config);
+        __configs = merge.recursive(true, __configs, env_config);
     }
 };
 
@@ -35,7 +35,7 @@ app.loadControllers = function () {
         controllers[file] = require(path.join(directory, file));
     });
 
-    if (_config.globals.controllers) {
+    if (__configs.globals.controllers) {
         for (var module in controllers) {
             global[module] = controllers[module];
         }
@@ -60,7 +60,7 @@ app.loadModels = function () {
         models[file] = require(path.join(directory, file));
     });
 
-    if (_config.globals.models) {
+    if (__configs.globals.models) {
         for (var module in models) {
             global[module] = models[module];
         }
@@ -85,7 +85,7 @@ app.loadMiddlewares = function () {
         middlewares[file] = require(path.join(directory, file));
     });
 
-    if (_config.globals.middlewares) {
+    if (__configs.globals.middlewares) {
         for (var module in middlewares) {
             global[module] = middlewares[module];
         }
@@ -112,7 +112,7 @@ app.loadServices = function () {
             services[file] = require(path.join(directory, file));
         });
 
-        if (_config.globals.services) {
+        if (__configs.globals.services) {
             for (var module in services) {
                 global[module] = services[module];
             }
@@ -144,6 +144,21 @@ app.loadResponses = function () {
 
         next();
     });
-}
+};
+
+global._config = function (name) {
+
+    try {
+        var value = eval("__configs." + name);
+    } catch (err) {
+        return null;
+    }
+
+    return value != undefined ? value : null;
+};
 
 
+global._url = function (path) {
+    var base_url = req.protocol + '://' + req.get('host');
+    return path ? base_url + "/" + path : base_url;
+};

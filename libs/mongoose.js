@@ -1,9 +1,9 @@
 var mongoose = require('mongoose');
 
-mongoose.connect(_config.db.url, _config.db.options);
+mongoose.connect(_config("db.url"), _config("db.options"));
 
 mongoose.connection.on('connected', function () {
-    console.log('Mongoose default connection open to ' + _config.db.url);
+    console.log('Mongoose default connection open to ' + _config("db.url"));
 });
 
 mongoose.connection.on('error', function (err) {

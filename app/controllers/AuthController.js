@@ -29,10 +29,10 @@ module.exports = {
                     user: user,
                     token: jwt.sign(
                         user.toJSON(),
-                        _config.jwt.secret,
-                        {expiresIn: _config.jwt.expires}
+                        _config("jwt.secret"),
+                        {expiresIn: _config("jwt.expires")}
                     ),
-                    expires: _config.jwt.expires
+                    expires: _config("jwt.expires")
                 });
             });
         })

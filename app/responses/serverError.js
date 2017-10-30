@@ -6,7 +6,7 @@ module.exports = function (data) {
     error.status = 500;
     error.success = false;
 
-    if (_config.app.env != "production") {
+    if (_config("app.env") != "production") {
         if (data instanceof Error) {
             error.message = data.message;
         } else if (data) {

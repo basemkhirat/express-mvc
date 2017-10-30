@@ -15,7 +15,7 @@ app.use(express.static(path.join(__basepath, "public")));
 
 /* Enabling CORS request validation */
 
-app.use(require('cors')(_config.cors));
+app.use(require('cors')(_config("cors")));
 
 /* Loading the i18n localization */
 
@@ -29,7 +29,7 @@ app.use(require("express-validator")());
 
 /* Loading the request body parser */
 
-app.use(require("body-parser").urlencoded(_config.body));
+app.use(require("body-parser").urlencoded(_config("body")));
 
 app.use(require("body-parser").json());
 
@@ -39,7 +39,7 @@ app.use(require("cookie-parser")());
 
 /* Loading express session */
 
-app.use(require("express-session")(_config.session));
+app.use(require("express-session")(_config("session")));
 
 /* Redirect back reponse method res.back() */
 
@@ -47,7 +47,7 @@ app.use(require('express-back')());
 
 /* Enable cross site request forgery */
 
-//app.use(require('csurf')(_config.csrf));
+//app.use(require('csurf')(_config("csrf")));
 
 /* Enable session flash messages */
 
@@ -69,7 +69,7 @@ app.use(function (req, res, next) {
         origRender.call(res, view, locals, callback);
     };
 
-    req.isAPI = req.url.startsWith("/"+_config.app.api_prefix);
+    req.isAPI = req.url.startsWith("/"+_config("app.api_prefix"));
     next();
 });
 
@@ -79,7 +79,7 @@ require("./passport");
 
 /* Serving api routes */
 
-app.use("/" + _config.app.api_prefix, require("./routes/api"));
+app.use("/" + _config("app.api_prefix"), require("./routes/api"));
 
 /* Serving web routes */
 

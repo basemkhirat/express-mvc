@@ -44,11 +44,10 @@ passport.use(new LocalStrategy(
 var JwtStrategy = require('passport-jwt').Strategy;
 var ExtractJwt = require('passport-jwt').ExtractJwt;
 
-
 var options = {};
 
 options.jwtFromRequest = ExtractJwt.fromUrlQueryParameter("token");
-options.secretOrKey = _config.jwt.secret;
+options.secretOrKey = _config("jwt.secret");
 
 passport.use(new JwtStrategy(options, function (payload, done) {
 

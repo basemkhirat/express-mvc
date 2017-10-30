@@ -10,4 +10,4 @@ require("./app");
 
 require("./app/kernel");
 
-app.listen(_config.app.port);
+app.listen(_config("app.port"));

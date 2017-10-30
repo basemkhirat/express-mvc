@@ -1,10 +1,5 @@
 var methods = require('methods');
 
-global._url = function (path) {
-    var base_url = req.protocol + '://' + req.get('host');
-    return path ? base_url + "/" + path : base_url;
-};
-
 module.exports = function(options) {
     if (!options) options = {};
     if (!options.helperName) options.helperName = '_route';
