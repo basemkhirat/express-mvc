@@ -247,7 +247,7 @@ _url("css/style.css");
 
 This application comes with two type of authentication methods:
 
-`session` for working with server side rendering applications which authentication is stored in session and browser cookie.
+`session` for working with server side rendering applications which authentication meta data is stored as session files on server and cookies in browser and browser sent this cookie with any request.
 
 You can set the session using `login` function
 
