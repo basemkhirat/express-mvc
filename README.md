@@ -66,7 +66,7 @@ Here we can put our static files such as image, css, js, uploads and other clien
 
 Contains the MVC folder structure:
 
-`controllers` are modules. each of them exports an object of methods that accepts request and response.
+`controllers` are modules. each of them exports an object of methods that accept request and response.
 
 ```javascript
 # HomeController.js
