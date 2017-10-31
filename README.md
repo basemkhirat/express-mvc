@@ -98,6 +98,8 @@ router.get("/", HomeController.index);
 module.exports = router;
 ```
 
+`Note` api routes defined in `api.js` are prefixed by default with the value of configuation `_config.app.api_prefix`;
+
 `models` define the mongoose collection models that interact directly with database.
 
 ```javascript
@@ -129,10 +131,6 @@ The default engine is `ejs`. You can change views settings from `app.js`
 </h1>
 
 ```
-
-`Note` api routes defined in `api.js` are  prefixed by default with the value of configuation `_config.app.api_prefix`;
-
-
 
 `middlewares` are functions that have access to the request object (req), the response object (res), and the next middleware function in the application’s request-response cycle. The next middleware function is commonly denoted by a variable named next.
 
