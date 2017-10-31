@@ -98,7 +98,7 @@ router.get("/", HomeController.index);
 module.exports = router;
 ```
 
-`models` define the mongoose collection models that interact directly to database.
+`models` define the mongoose collection models that interact directly with database.
 
 ```javascript
 # User.js
