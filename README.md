@@ -56,7 +56,7 @@ module.exports = {
 }
 ```
 
-We can access configuration using the `_config` object. so if we want to get the environment key we call `_config('app.env')`.
+We can access configuration using the `_config()` function. so if we want to get the environment key we call `_config('app.env')`.
 
 ## Public directory
 
