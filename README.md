@@ -42,7 +42,7 @@ All application configuration files are stored here grouped by its functionalite
 `cors.js` setting the Cross-Origin Resource Sharing protection.
 
 
-In production environment. we always need a different configuration parameters that what the `config/env.js` do.
+In production environment. we always need a different configuration parameters that what the `config/env` directory do.
 
 The application gets the enviroment stored in `app.js` file and load the evironment file. So if we are working in `production` environment, the application will automatically load the configuration file `config/env/production.js` and uses its defined items to override items stored outside.
 
