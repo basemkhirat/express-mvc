@@ -1,6 +1,26 @@
 # express-mvc
 A light-weight full-featured mvc pattern for express framework with minimum dependencies
 
+
+## Installation
+
+```bash
+npm install express-mvc-generate -g
+```
+
+Express MVC generator command will be installed globally so from anywhere you can call it to generate the project skeleton.
+
+```bash
+express-mvc-generate my-project
+cd my-project
+npm install
+npm start
+```
+Server will be created at port 3000 by default. you can change the port later from app configurations.
+
+Browse `http://localhost:3000` and have fun.
+
+
 ## The config directory
 
 All application configuration files are stored here grouped by its functionalites:
