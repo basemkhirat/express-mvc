@@ -90,4 +90,3 @@ schema.methods.comparePassword = function (password, callback) {
 }
 
 module.exports = mongoose.model("user", schema, "user");
-

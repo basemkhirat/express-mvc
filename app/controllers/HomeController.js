@@ -10,10 +10,12 @@ module.exports = {
 
         // Logging In
 
-        // req.login({id: "59f4856fd3b99e1d311ef94a"}, function (error) {
-        //     if (error) return next(error);
-        //     return res.redirect("/profile");
-        // });
+        /*
+        req.login({id: "59f4856fd3b99e1d311ef94a"}, function (error) {
+            if (error) return next(error);
+            return res.redirect("/profile");
+        });
+        */
 
         return res.render("hello");
     },

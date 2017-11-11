@@ -92,7 +92,7 @@ module.exports = {
      */
 
     logDebugFn: function (msg) {
-        console.log('debug', msg);
+        // console.log('debug', msg);
     },
 
     /**
@@ -101,7 +101,7 @@ module.exports = {
      */
 
     logWarnFn: function (msg) {
-        console.log('warn', msg);
+        // console.log('warn', msg);
     },
 
     /**
@@ -110,7 +110,7 @@ module.exports = {
      */
 
     logErrorFn: function (msg) {
-        console.log('error', msg);
+        // console.log('error', msg);
     },
 
     /**

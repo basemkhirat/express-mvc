@@ -99,7 +99,7 @@ module.exports = {
          * and will delete it on a condition like exiting a web browser application.
          */
 
-        // expires: Dat
+        // expires: Date
 
 
         /**
