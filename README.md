@@ -42,7 +42,7 @@ All application configuration files are stored here grouped by its functionalite
 `cors.js` setting the Cross-Origin Resource Sharing protection.
 
 
-In production environment. we always need a different configuration parameters that what the `config/env.js` do.
+In production environment. we always need a different configuration parameters that what the `config/env` directory do.
 
 The application gets the enviroment stored in `app.js` file and load the evironment file. So if we are working in `production` environment, the application will automatically load the configuration file `config/env/production.js` and uses its defined items to override items stored outside.
 
@@ -56,7 +56,7 @@ module.exports = {
 }
 ```
 
-We can access configuration using the `_config` object. so if we want to get the environment key we call `_config('app.env')`.
+We can access configuration using the `_config()` function. so if we want to get the environment key we call `_config('app.env')`.
 
 ## Public directory
 
@@ -66,7 +66,7 @@ Here we can put our static files such as image, css, js, uploads and other clien
 
 Contains the MVC folder structure:
 
-`controllers` are modules. each of them exports an object of methods that accepts request and response.
+`controllers` are modules. each of them exports an object of methods that accept request and response.
 
 ```javascript
 # HomeController.js
@@ -98,7 +98,9 @@ router.get("/", HomeController.index);
 module.exports = router;
 ```
 
-`models` define the mongoose collection models that interact directly to database.
+`Note` api routes defined in `api.js` are prefixed by default with the value of configuation `_config.app.api_prefix`;
+
+`models` define the mongoose collection models that interact directly with database.
 
 ```javascript
 # User.js
@@ -129,10 +131,6 @@ The default engine is `ejs`. You can change views settings from `app.js`
 </h1>
 
 ```
-
-`Note` api routes defined in `api.js` are  prefixed by default with the value of configuation `_config.app.api_prefix`;
-
-
 
 `middlewares` are functions that have access to the request object (req), the response object (res), and the next middleware function in the application’s request-response cycle. The next middleware function is commonly denoted by a variable named next.
 
@@ -249,7 +247,7 @@ _url("css/style.css");
 
 This application comes with two type of authentication methods:
 
-`session` for working with server side rendering applications which authentication is stored in session and browser cookie.
+`session` for working with server side rendering applications which authentication meta data is stored as session files on server and cookies in browser and browser sends this cookie with any request.
 
 You can set the session using `login` function
 
