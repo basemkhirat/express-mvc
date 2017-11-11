@@ -1,4 +1,4 @@
-require("./libs/helpers");
+require("express-mvc-platform/lib/helpers");
 
 /* Configurations */
 

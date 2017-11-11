@@ -3,11 +3,11 @@ var path = require("path");
 
 /* Building mongodb connection object */
 
-require(path.join(__basepath, "libs/mongoose"));
+require("express-mvc-platform/lib/mongoose");
 
 /* Enable router named routes */
 
-require(path.join(__basepath, "libs/router"))();
+require("express-mvc-platform/lib/router")();
 
 /* Serving public static files */
 
@@ -19,7 +19,7 @@ app.use(require('cors')(_config("cors")));
 
 /* Loading the i18n localization */
 
-app.use(require(path.join(__basepath, "libs/i18n")));
+app.use(require("express-mvc-platform/lib/i18n"));
 
 app.use(require("morgan")("dev"))
 

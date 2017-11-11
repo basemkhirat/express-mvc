@@ -1,34 +1,14 @@
 {
-  "name": "expressmvc",
+  "name": "express-mvc",
   "version": "0.0.1",
   "description": "express light-weight mvc",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
   "author": "basem khirat",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
-    "async": "^2.5.0",
-    "bcrypt": "^1.0.3",
-    "body-parser": "^1.18.2",
-    "cookie-parser": "^1.4.3",
-    "cors": "^2.8.4",
-    "csurf": "^1.9.0",
-    "ejs": "^2.5.7",
-    "express": "^4.16.2",
-    "express-back": "0.0.2",
-    "express-flash": "0.0.2",
-    "express-mvc-generate": "0.0.2",
-    "express-session": "^1.15.6",
-    "express-validator": "^4.3.0",
-    "i18n": "^0.8.3",
-    "jsonwebtoken": "^8.1.0",
-    "mongoose": "^4.12.5",
-    "morgan": "^1.9.0",
-    "passport": "^0.4.0",
-    "passport-jwt": "^3.0.1",
-    "passport-local": "^1.0.0"
+    "express-mvc-platform": "*"
   }
 }
