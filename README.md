@@ -308,7 +308,7 @@ req.user;		// return a json of user object
 
 ## Redirection
 
-The response method `res.back()` is added with express to redirect to the previous page;
+The response method `res.back()` is added with express to redirect to the previous page.
 
 ## Author
 [Basem Khirat](http://basemkhirat.com) - [basemkhirat@gmail.com](mailto:basemkhirat@gmail.com) - [@basemkhirat](https://twitter.com/basemkhirat)  
