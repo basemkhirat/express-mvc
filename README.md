@@ -98,7 +98,7 @@ router.get("/", HomeController.index);
 module.exports = router;
 ```
 
-`Note` api routes defined in `api.js` are prefixed by default with the value of configuation `_config.app.api_prefix`;
+`Note` api routes defined in `api.js` are prefixed by default with the value of configuation `_config("app.api_prefix")`;
 
 `models` define the mongoose collection models that interact directly with database.
 
