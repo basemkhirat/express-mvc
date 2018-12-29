@@ -2,6 +2,7 @@ var mongoose = require("mongoose");
 var bcrypt = require("bcrypt");
 
 var schema = mongoose.Schema({
+
         username: {
             type: String,
             unique: true
@@ -26,14 +27,6 @@ var schema = mongoose.Schema({
         lang: {
             type: String,
             default: 'en'
-        },
-        created_at: {
-            type: Date,
-            default: Date.now
-        },
-        updated_at: {
-            type: Date,
-            default: Date.now
         }
 
     }, {

@@ -20,7 +20,7 @@ module.exports = {
      * if it is a string, the value is passed to the bytes library for parsing. Defaults to '100kb'.
      */
 
-    limit: '100kb',
+    limit: '20480kb',
 
     /**
      * The parameterLimit option controls the maximum number of parameters that are allowed in the URL-encoded data.

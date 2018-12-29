@@ -81,6 +81,8 @@ module.exports = {
 
         var id = req.param("id");
 
+        console.log(req.user);
+
         User.findById(id, function (error, user) {
 
             if (error) return res.serverError(error);
