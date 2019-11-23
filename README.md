@@ -1,5 +1,5 @@
 # express-mvc
-A light-weight full-featured mvc pattern for express framework with minimum dependencies
+A light-weight mvc pattern for express framework with minimum dependencies
 
 
 ## Installation
