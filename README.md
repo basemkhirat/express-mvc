@@ -1,3 +1,11 @@
+# Attention
+
+Now, we don't give support for this package as we worked on the core since Jan 2019 to introduce dotapp nodejs framework.
+
+See: [DotApp Framework](https://github.com/basemkhirat/dotapp-framework)
+
+If you are a maintainer, contact us and you are welcome to have access.
+
 # express-mvc
 A light-weight mvc pattern for express framework with minimum dependencies
 
